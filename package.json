@@ -6,7 +6,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "mastra dev",
     "build": "mastra build",
-    "start": "mastra start"
+    "start": "mastra start",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +31,27 @@
     "zod": "^3.25.67"
   },
   "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "@types/eslint": "^9.6.1",
     "@types/node": "^24.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.35.1",
+    "@typescript-eslint/parser": "^8.35.1",
+    "eslint": "^9.30.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "mastra": "^0.10.8",
+    "prettier": "^3.6.2",
     "typescript": "^5.8.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
